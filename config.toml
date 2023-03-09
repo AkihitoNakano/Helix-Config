@@ -2,6 +2,9 @@ theme="rasmus_transparent"
 
 [editor]
 mouse = false
+# まだ使えない
+# soft-wrap.enable = true
+
 
 [editor.cursor-shape]
 insert = "bar"

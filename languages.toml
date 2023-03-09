@@ -2,6 +2,7 @@
 name = "typescript"
 scope = "source.ts"
 injection-regex = "typescript"
+max-line-length = 100
 formatter = {command = 'prettier', args = ["--parser", "typescript"]}
 indent = {tab-width = 2, unit = "  "}
 auto-format = true
