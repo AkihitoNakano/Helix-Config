@@ -1,14 +1,4 @@
 [[language]]
-name = "typescript"
-scope = "source.ts"
-injection-regex = "typescript"
-max-line-length = 100
-formatter = {command = 'prettier', args = ["--parser", "typescript"]}
-indent = {tab-width = 2, unit = "  "}
-auto-format = true
-config = { format = {"semicolons" = "remove"}}
-
-[[language]]
 name = "html"
 formatter = { command = 'prettier', args = ["--parser", "html"] }
 
@@ -23,10 +13,70 @@ name = "css"
 formatter = { command = 'prettier', args = ["--parser", "css"] }
 
 [[language]]
+name = "markdown"
+language-server = {command = "ltex-ls", args = ["/opt/homebrew/bin/marksman"]}
+
+# [[language]]
+# name = "typescript"
+# scope = "source.ts"
+# injection-regex = "typescript"
+# max-line-length = 100
+# formatter = {command = 'prettier', args = ["--parser", "typescript"]}
+# indent = {tab-width = 2, unit = "  "}
+# auto-format = true
+# config = { format = {"semicolons" = "remove"}}
+
+# Denoのlanguage serverを追加
+# nodeのtypescriptと干渉しないか検証が必要
+# https://github.com/helix-editor/helix/discussions/2536
+[[language]]
 name = "javascript"
+scope = "source.js"
+injection-regex = "^(js|javascript)$"
+file-types = ["js", "jsx", "mjs"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "package.json", "tsconfig.json"]
+comment-token = "//"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+config = { enable = true, lint = true, unstable = true }
+language-server = { command = "deno", args = ["lsp"], language-id = "javascript" }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "jsx"
+scope = "source.jsx"
+injection-regex = "jsx"
+file-types = ["jsx"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "package.json", "tsconfig.json"]
+comment-token = "//"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+config = { enable = true, lint = true, unstable = true }
+language-server = { command = "deno", args = ["lsp"], language-id = "javascriptreact" }
+indent = { tab-width = 2, unit = "  " }
+grammar = "javascript"
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+injection-regex = "^(ts|typescript)$"
+file-types = ["ts"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "package.json", "tsconfig.json"]
+config = { enable = true, lint = true, unstable = true, format = {"semicolons" = "remove"} }
+formatter = {command = 'prettier', args = ["--parser", "typescript"]}
+language-server = { command = "deno", args = ["lsp"], language-id = "typescript" }
+indent = { tab-width = 2, unit = "  " }
 auto-format = true
 
 [[language]]
-name = "markdown"
-language-server = {command = "ltex-ls", args = ["/opt/homebrew/bin/marksman"]}
+name = "tsx"
+scope = "source.tsx"
+injection-regex = "^(tsx)$" # |typescript
+file-types = ["tsx"]
+shebangs = ["deno", "node"]
+roots = ["deno.json", "package.json", "tsconfig.json"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+config = { enable = true, lint = true, unstable = true }
+language-server = { command = "deno", args = ["lsp"], language-id = "typescriptreact" }
+indent = { tab-width = 2, unit = "  " }
