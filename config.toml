@@ -4,7 +4,15 @@ theme="rasmus_transparent"
 mouse = false
 # まだ使えない
 # soft-wrap.enable = true
+bufferline = "multiple"
+rulers = [100]
 
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+
+[keys.normal.space]
+# キーの押し間違えが怖い
+q = ":w"
 
 [editor.cursor-shape]
 insert = "bar"

@@ -108,6 +108,7 @@
 "diagnostic.info".underline = { color = "bright_blue", style = "curl" } 
 "diagnostic.hint".underline = { color = "bright_cyan", style = "curl" } 
 
+
 warning = "bright_yellow"
 error = "bright_red"
 info = "bright_blue"
